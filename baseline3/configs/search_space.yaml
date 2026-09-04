@@ -1,0 +1,68 @@
+# Exactly six validation configurations. Do not add post-hoc trials for one baseline.
+# All configurations train with seed 42 and are selected on 2021 validation macro-nCRPS.
+configurations:
+  - id: c01_base
+    description: Published WGAN-GP defaults adapted to the conditional joint architecture.
+    overrides:
+      model:
+        latent_dim: 128
+      training:
+        lr_g: 0.0001
+        lr_d: 0.0001
+        critic_steps: 5
+        gp_lambda: 10.0
+
+  - id: c02_z64
+    description: Lower-dimensional latent vector.
+    overrides:
+      model:
+        latent_dim: 64
+      training:
+        lr_g: 0.0001
+        lr_d: 0.0001
+        critic_steps: 5
+        gp_lambda: 10.0
+
+  - id: c03_z256
+    description: Higher-dimensional latent vector.
+    overrides:
+      model:
+        latent_dim: 256
+      training:
+        lr_g: 0.0001
+        lr_d: 0.0001
+        critic_steps: 5
+        gp_lambda: 10.0
+
+  - id: c04_lr_low
+    description: Lower learning rates for both networks.
+    overrides:
+      model:
+        latent_dim: 128
+      training:
+        lr_g: 0.00005
+        lr_d: 0.00005
+        critic_steps: 5
+        gp_lambda: 10.0
+
+  - id: c05_lr_high
+    description: Higher learning rates for both networks.
+    overrides:
+      model:
+        latent_dim: 128
+      training:
+        lr_g: 0.0002
+        lr_d: 0.0002
+        critic_steps: 5
+        gp_lambda: 10.0
+
+  - id: c06_critic3
+    description: Fewer critic updates per generator update.
+    overrides:
+      model:
+        latent_dim: 128
+      training:
+        lr_g: 0.0001
+        lr_d: 0.0001
+        critic_steps: 3
+        gp_lambda: 10.0
